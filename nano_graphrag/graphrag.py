@@ -267,8 +267,7 @@ class GraphRAG:
             # ---------- chunking
             inserting_chunks = {}
             
-            import time
-            s=time.time()
+
             
             new_docs_list=list(new_docs.items())
             docs=[new_doc[1]["content"] for new_doc in new_docs_list]
@@ -282,8 +281,7 @@ class GraphRAG:
             for chunk in chunks:
                 inserting_chunks.update({compute_mdhash_id(chunk["content"], prefix="chunk-"):chunk})
             
-            e=time.time()
-            print(e-s)
+
             _add_chunk_keys = await self.text_chunks.filter_keys(
                 list(inserting_chunks.keys())
             )
